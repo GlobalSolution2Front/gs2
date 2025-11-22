@@ -33,7 +33,7 @@ const INTEGRANTES: Integrante[] = [
     rm: "RM561171",
     turma: "1TDSPJ",
     github: "https://github.com/justigliani",
-    linkedin: "https://www.linkedin.com/in/usuario3",
+    linkedin: "https://www.linkedin.com/in/juliana-undefined-b3888630b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     foto: "../juliana.jpg",
   },
 ];

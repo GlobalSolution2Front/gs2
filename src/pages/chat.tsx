@@ -1,168 +1,177 @@
-import { useNavigate } from "react-router-dom";
-import Voz from "../components/voz";
-import ModoIdoso from "../components/modoidoso";
+import { useState, type FormEvent } from "react";
 
-function Chat() {
-  const navigate = useNavigate();
+import bgImage from "../assets/fundo.avif";
+import NavBar from "../components/NavBar";
+
+type MessageSender = "user" | "bot";
+
+interface Message {
+  id: number;
+  sender: MessageSender;
+  text: string;
+  timestamp: string;
+}
+
+function ChatPage() {
+  const [messages, setMessages] = useState<Message[]>([
+    {
+      id: 1,
+      sender: "bot",
+      text: "Olá! 👋 Sou sua assistente da Plataforma Futuro do Trabalho. Posso te ajudar com currículo, carreira ou transição profissional. Sobre o que você quer falar hoje?",
+      timestamp: "agora",
+    },
+  ]);
+  const [input, setInput] = useState("");
+
+  function formatTime() {
+    const now = new Date();
+    return `${String(now.getHours()).padStart(2, "0")}:${String(
+      now.getMinutes()
+    ).padStart(2, "0")}`;
+  }
+
+  function buildBotAnswer(userText: string): string {
+    const text = userText.toLowerCase();
+
+    if (text.includes("curriculo") || text.includes("cv")) {
+      return (
+        "Currículo idealmente tem 1 a 2 páginas, focando em resultados. " +
+        "Comece com um resumo profissional, destaque experiências recentes, " +
+        "projetos relevantes e habilidades técnicas/comportamentais. " +
+        "Se quiser, posso sugerir estrutura de seções pra você."
+      );
+    }
+
+    if (text.includes("trabalho") || text.includes("vaga") || text.includes("emprego")) {
+      return (
+        "Para se candidatar a vagas, adapte seu currículo para a descrição da vaga " +
+        "e use palavras-chave parecidas. Também vale manter um perfil ativo no LinkedIn " +
+        "e participar de comunidades da sua área."
+      );
+    }
+
+    if (text.includes("junior") || text.includes("estagio") || text.includes("estágio")) {
+      return (
+        "Para oportunidades júnior/estágio, foque em projetos práticos: " +
+        "portfólio no GitHub, participação em desafios e cursos. " +
+        "Reforce no currículo o que você já construiu, mesmo que não seja experiência formal."
+      );
+    }
+
+    if (text.includes("transicao") || text.includes("transição") || text.includes("migrar")) {
+      return (
+        "Em transição de carreira, é importante mapear suas habilidades atuais " +
+        "e ver o que já é aproveitável na nova área. Depois, defina um plano com " +
+        "etapas de estudo, projetos e networking. Você quer migrar para qual área?"
+      );
+    }
+
+    return (
+      "Entendi! 👍 Posso te ajudar com: currículo, como se preparar para vagas, " +
+      "transição de carreira ou como usar a plataforma. Me conta um pouco mais " +
+      "do seu objetivo pra eu responder de forma mais específica."
+    );
+  }
+
+  function handleSubmit(event: FormEvent) {
+    event.preventDefault();
+    const trimmed = input.trim();
+    if (!trimmed) return;
+
+    const time = formatTime();
+
+    const userMessage: Message = {
+      id: Date.now(),
+      sender: "user",
+      text: trimmed,
+      timestamp: time,
+    };
+
+    const botMessage: Message = {
+      id: Date.now() + 1,
+      sender: "bot",
+      text: buildBotAnswer(trimmed),
+      timestamp: time,
+    };
+
+    setMessages((prev) => [...prev, userMessage, botMessage]);
+    setInput("");
+  }
 
   return (
-    <div className="min-h-screen flex bg-white">
-      {/* MENU LATERAL – mesmo padrão do Agendamento */}
-      <aside
-        className="
-          w-40 sm:w-48 md:w-64 shrink-0
-          bg-[#004A80] text-white flex flex-col items-center py-6
-          sticky top-0 h-screen overflow-y-auto
-        "
-      >
-         <div className="flex items-center gap-3 mb-6">
-         
-          <button  onClick={() => navigate("/home")}>
-            <img src="/NOVO-LOGO-HC.png" alt="Logo HC" className="h-14 sm:h-16 md:h-20" />
-          </button>
-        </div>
+    <div
+      className="min-h-screen flex flex-col bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: `url(${bgImage})` }}
+    >
+      <NavBar />
 
-        <nav className="flex flex-col gap-2 w-full text-center font-semibold text-xs sm:text-sm md:text-lg">
-          <button className="hover:bg-[#0F8E89] py-2" onClick={() => navigate("/home")}>
-            PÁGINA INICIAL
-          </button>
-          <button className="hover:bg-[#0F8E89] py-2" onClick={() => navigate("/perfil")}>
-            PERFIL
-          </button>
-          <button className="hover:bg-[#0F8E89] py-2" onClick={() => navigate("/faq")}>
-            FAQ
-          </button>
-          <button className="bg-[#0F8E89] py-2" onClick={() => navigate("/contato")}>
-            CONTATO
-          </button>
-          <button className="hover:bg-[#0F8E89] py-2" onClick={() => navigate("/agendamento")}>
-            AGENDAMENTO
-          </button>
-          <button className="hover:bg-[#0F8E89] py-2" onClick={() => navigate("/teleconsulta")}>
-            TELECONSULTA
-          </button>
-        </nav>
+      <main className="flex-1 flex justify-center px-4 py-8">
+        <section className="w-full max-w-4xl bg-black/60 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl flex flex-col overflow-hidden">
+          {/* Cabeçalho */}
+          <header className="px-6 py-4 border-b border-white/10 flex items-center justify-between">
+            <div>
+              <h1 className="text-lg md:text-xl font-semibold text-white">
+                Assistente de Carreira & Currículo
+              </h1>
+              <p className="text-xs md:text-sm text-gray-300">
+                Tire dúvidas sobre mercado de trabalho, currículo e transição profissional.
+              </p>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-xs text-gray-300">Online</span>
+            </div>
+          </header>
 
-        <div className="mt-8 flex flex-col gap-6 items-center">
-          <div className="mt-10 flex flex-col gap-6 items-center">
-            <Voz />
-            <button className="flex flex-col items-center" onClick={() => navigate("/integrantes")}>
-              <span className="text-3xl">👥</span>
-              <span className="text-sm">Integrantes</span>
-            </button>
+          {/* Área de mensagens */}
+          <div className="flex-1 px-4 md:px-6 py-4 space-y-4 overflow-y-auto">
+            {messages.map((msg) => (
+              <div
+                key={msg.id}
+                className={`flex ${
+                  msg.sender === "user" ? "justify-end" : "justify-start"
+                }`}
+              >
+                <div
+                  className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm md:text-base shadow-lg border
+                    ${
+                      msg.sender === "user"
+                        ? "bg-emerald-600/90 border-emerald-300 text-white rounded-br-sm"
+                        : "bg-slate-900/90 border-sky-400/60 text-gray-100 rounded-bl-sm"
+                    }`}
+                >
+                  <p className="whitespace-pre-line">{msg.text}</p>
+                  <span className="mt-1 block text-[10px] text-gray-200/70 text-right">
+                    {msg.timestamp}
+                  </span>
+                </div>
+              </div>
+            ))}
           </div>
 
-          {/* Botão do Modo Idoso */}
-          <ModoIdoso />
-        </div>
-      </aside>
-
-      {/* CONTEÚDO */}
-      <main className="flex-1 min-w-0 bg-[#F6FAFB] flex flex-col">
-        {/* Barra superior com pesquisa */}
-        <header className="flex justify-between items-center gap-3 sm:gap-4 mb-6 px-3 sm:px-4 py-3 border-b bg-white rounded">
-          <div className="flex items-center border border-gray-300 rounded-full px-3 sm:px-4 py-2 bg-white w-full max-w-md">
+          {/* Input */}
+          <form
+            onSubmit={handleSubmit}
+            className="px-4 md:px-6 py-4 border-t border-white/10 bg-black/40 flex items-center gap-3"
+          >
             <input
               type="text"
-              placeholder="Pesquisar no sistema..."
-              className="flex-1 outline-none text-gray-700 text-sm md:text-base"
+              placeholder="Digite sua dúvida sobre currículo, trabalho ou transição de carreira..."
+              className="flex-1 bg-slate-900/80 border border-slate-600 focus:border-sky-400 outline-none rounded-xl px-4 py-2 text-sm md:text-base text-white placeholder:text-gray-400"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
             />
-            <span className="text-gray-500">🔍</span>
-          </div>
-
-          <div className="hidden xs:flex gap-3 sm:gap-6">
-            <button onClick={() => navigate("/perfil")} className="text-center">
-              <div className="text-2xl md:text-3xl">👤</div>
-              <p className="text-[11px] sm:text-xs md:text-sm">Perfil</p>
+            <button
+              type="submit"
+              className="px-4 md:px-5 py-2 rounded-xl text-sm md:text-base font-medium bg-sky-600 hover:bg-sky-500 text-white shadow-lg transition-transform hover:scale-105"
+            >
+              Enviar
             </button>
-            <button onClick={() => navigate("/")} className="text-center">
-              <div className="text-2xl md:text-3xl">🚪</div>
-              <p className="text-[11px] sm:text-xs md:text-sm">Sair</p>
-            </button>
-          </div>
-        </header>
-
-        {/* Área de Chat */}
-        <section className="flex-1 p-4 sm:p-6 flex flex-col space-y-4 overflow-y-auto max-w-4xl mx-auto w-full">
-          {/* Mensagem do assistente */}
-          <div className="flex items-start">
-            <div className="bg-[#CDE6E7] px-4 py-2 rounded-lg max-w-xl">
-              <p>
-                Olá! Eu sou a Helena, assistente virtual do Hospital das Clínicas.  
-                Como posso te ajudar? Você pode: agendar consultas, consultar horários,  
-                saber onde ficam os setores, entender exames ou falar com um atendente.
-              </p>
-            </div>
-          </div>
-
-          {/* Mensagem do usuário */}
-          <div className="flex items-start justify-end">
-            <div className="bg-gray-200 px-4 py-2 rounded-lg max-w-xl">
-              <p>Olá! Eu gostaria de agendar uma consulta.</p>
-            </div>
-          </div>
-
-          {/* Assistente */}
-          <div className="flex items-start">
-            <div className="bg-[#CDE6E7] px-4 py-2 rounded-lg max-w-xl">
-              <p>Claro! Com qual especialidade médica você gostaria de marcar a consulta?</p>
-            </div>
-          </div>
-
-          {/* Usuário */}
-          <div className="flex items-start justify-end">
-            <div className="bg-gray-200 px-4 py-2 rounded-lg max-w-xl">
-              <p>Gostaria de uma consulta com um cardiologista.</p>
-            </div>
-          </div>
-
-          {/* Assistente */}
-          <div className="flex items-start">
-            <div className="bg-[#CDE6E7] px-4 py-2 rounded-lg max-w-xl">
-              <p>
-                Perfeito! Temos horários disponíveis amanhã às 10h ou na sexta às 15h.  
-                Qual prefere agendar?
-              </p>
-            </div>
-          </div>
-
-          {/* Usuário */}
-          <div className="flex items-start justify-end">
-            <div className="bg-gray-200 px-4 py-2 rounded-lg max-w-xl">
-              <p>Amanhã às 10h está ótimo.</p>
-            </div>
-          </div>
-
-          {/* Assistente */}
-          <div className="flex items-start">
-            <div className="bg-[#CDE6E7] px-4 py-2 rounded-lg max-w-xl">
-              <p>
-                Consulta marcada com sucesso! ✅  
-                Um lembrete será enviado para o seu e-mail cadastrado.
-              </p>
-            </div>
-          </div>
+          </form>
         </section>
-
-        {/* Input de mensagem */}
-        <footer className="p-3 sm:p-4 border-t flex items-center gap-3">
-          <input
-            type="text"
-            placeholder="Digite sua mensagem..."
-            className="flex-1 border rounded-full px-3 sm:px-4 py-2 focus:outline-none text-sm md:text-base"
-          />
-          <button className="bg-[#0F8E89] text-white px-4 py-2 rounded-full hover:bg-[#0c6e6a] transition">
-            ➤
-          </button>
-        </footer>
       </main>
     </div>
   );
 }
 
-export default Chat;
-
-
-
-
-
+export default ChatPage;

@@ -10,6 +10,8 @@ import Integrantes from "./pages/integrantes";
 import DiagnosticoPage from "./pages/diagnostico";
 import CarreirasPage from "./pages/carreiras";
 import TransicaoPage from "./pages/transicao";
+import Chat from "./pages/chat";
+
 
 // se quiser manter as outras páginas antigas (pacientes, medicos etc.),
 // você ainda pode importar aqui também
@@ -31,6 +33,7 @@ function App() {
         <Route path="/diagnostico" element={<DiagnosticoPage />} />
         <Route path="/carreiras" element={<CarreirasPage />} />
         <Route path="/transicao" element={<TransicaoPage />} />
+        <Route path="/chat" element={<Chat />} />
       </Routes>
     </Router>
   );

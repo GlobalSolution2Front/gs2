@@ -26,6 +26,15 @@ function NavBar() {
             }`}
           >
             Início
+
+            </Link>
+          <Link
+            to="/chat"
+            className={`${linkBase} ${
+              location.pathname === "/chat" ? active : inactive
+            }`}
+          >
+            Chat
           </Link>
           <Link
             to="/diagnostico"
