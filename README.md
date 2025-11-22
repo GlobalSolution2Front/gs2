@@ -71,14 +71,10 @@ A aplicação inclui telas de **login, cadastro, home, diagnóstico (DNA profiss
 ### Tela de Login  
 ![Login](./src/assets/login1.png)
 
-### Tela Home  
-![Home](./src/assets/inicio.png)
 
 ### Tela de Diagnóstico & DNA Profissional  
 ![Diagnóstico](./src/assets/diagnostico.png)
 
-### Tela de Carreiras & Roadmap  
-![Carreiras](./src/assets/mapeamento.png)
 
 ### Tela de Gestão da Transição  
 ![Transição](./src/assets/transicao.png)
