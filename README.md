@@ -68,7 +68,6 @@ A aplicação inclui telas de **login, cadastro, home, diagnóstico (DNA profiss
 ## 🛠️ Instalação
 
 ### 1. Clone o repositório
-```bash
 git clone https://github.com/ORGANIZACAO/REPOSITORIO.git
 2. Acesse o diretório
 bash
@@ -107,7 +106,7 @@ Rota	Página	Descrição
 | **Leticia Santiago e Silva** | 565799 | 1TDSPI | https://github.com/santiago-leticia |https://www.linkedin.com/in/leticia-santiago-6b9219354?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app |
 | **Juliana da Silva Stigliani** | 561171 | 1TDSPJ | https://github.com/justigliani | https://linkedin.com/in/ |
 
-> Preencha os links com os perfis reais das integrantes.
+
 
 ---
 
@@ -170,6 +169,8 @@ src/
     contato.tsx
   App.tsx
   main.tsx
+
+  
 
   
 
