@@ -64,59 +64,6 @@ A aplicação inclui telas de **login, cadastro, home, diagnóstico (DNA profiss
 
 ---
 
-## 🖼️ Imagens do Projeto
-
-
-
-### Tela de Login  
-![Login](./src/assets/login1.png)
-
-
-### Tela de Diagnóstico & DNA Profissional  
-![Diagnóstico](./src/assets/diagnostico.png)
-
-
-### Tela de Gestão da Transição  
-![Transição](./src/assets/transicao.png)
-
-### Tela de Integrantes  
-![Integrantes](./src/assets/integrantes.png)
-
-### Tela de FAQ  
-![FAQ](./src/assets/faq.png)
-
-### Tela de Contato  
-![Contato](./src/assets/contato.png)
-
----
-
-## 📂 Estrutura de Pastas (resumo)
-
-
-
-```bash
-src/
-  assets/
-    fundo.avif
-
-  components/
-    NavBar.tsx
-  
-  pages/
-    login.tsx
-    cadastro.tsx
-    home.tsx
-    diagnostico.tsx
-    carreiras.tsx
-    transicao.tsx
-    integrantes.tsx
-    sobre.tsx
-    faq.tsx
-    contato.tsx
-  App.tsx
-  main.tsx
-
-  ---
 
 ## 🛠️ Instalação
 
@@ -169,6 +116,62 @@ Rota	Página	Descrição
 - **Repositório GitHub:** _https://github.com/GlobalSolution2Front/gs2_  
 - **Vídeo da Apresentação (YouTube):** _adicione aqui_  
 
+
+---
+
+## 🖼️ Imagens do Projeto
+
+
+
+### Tela de Login  
+![Login](./src/assets/login1.png)
+
+
+### Tela de Diagnóstico & DNA Profissional  
+![Diagnóstico](./src/assets/diagnostico.png)
+
+
+### Tela de Gestão da Transição  
+![Transição](./src/assets/transicao.png)
+
+### Tela de Integrantes  
+![Integrantes](./src/assets/integrantes.png)
+
+### Tela de FAQ  
+![FAQ](./src/assets/faq.png)
+
+### Tela de Contato  
+![Contato](./src/assets/contato.png)
+
+---
+
+## 📂 Estrutura de Pastas (resumo)
+
+
+
+```bash
+src/
+  assets/
+    fundo.avif
+
+  components/
+    NavBar.tsx
+  
+  pages/
+    login.tsx
+    cadastro.tsx
+    home.tsx
+    diagnostico.tsx
+    carreiras.tsx
+    transicao.tsx
+    integrantes.tsx
+    sobre.tsx
+    faq.tsx
+    contato.tsx
+  App.tsx
+  main.tsx
+
+  
 
 
 
