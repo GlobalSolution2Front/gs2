@@ -146,7 +146,23 @@ Rota	Página	Descrição
 
 ## 📂 Estrutura de Pastas (resumo)
 
+---
 
+## 📌 Sumário
+1. [Descrição do Projeto](#-descrição-do-projeto)  
+2. [Status do Projeto](#-status-do-projeto)  
+3. [Tecnologias Utilizadas](#-tecnologias-utilizadas)  
+4. [Instalação](#-instalação)  
+5. [Como Usar](#-como-usar)  
+6. [Estrutura de Pastas](#-estrutura-de-pastas)  
+7. [Rotas Principais](#-rotas-principais)  
+8. [Funcionalidades](#-funcionalidades-da-plataforma)  
+9. [Imagens do Projeto](#-imagens-do-projeto)  
+10. [Autores e Créditos](#-autores-e-créditos)  
+11. [Links Importantes](#-links-importantes)  
+12. [Contato](#-contato)
+
+---
 
 ```bash
 src/
