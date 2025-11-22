@@ -144,7 +144,6 @@ Rota	Página	Descrição
 
 ---
 
-## 📂 Estrutura de Pastas (resumo)
 
 ---
 
@@ -163,6 +162,10 @@ Rota	Página	Descrição
 12. [Contato](#-contato)
 
 ---
+
+## 📂 Estrutura de Pastas (resumo)
+
+
 
 ```bash
 src/
