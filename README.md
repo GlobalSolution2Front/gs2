@@ -113,7 +113,7 @@ Rota	Página	Descrição
 ## 🔗 Links Importantes
 
 - **Repositório GitHub:** _https://github.com/GlobalSolution2Front/gs2_  
-- **Vídeo da Apresentação (YouTube):** _adicione aqui_  
+- **Vídeo da Apresentação (YouTube):** _https://youtu.be/horqGEUD0qM_  
 
 
 ---
